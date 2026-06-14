@@ -14,6 +14,11 @@ export default async function Home() {
         <p className="mt-3 text-white/90 text-lg">
           Handmade crochet flowers, made with love in Melbourne
         </p>
+        <nav className="mt-4">
+          <Link href="/about" className="text-white/90 hover:text-white underline text-sm font-medium">
+            Our Story
+          </Link>
+        </nav>
       </header>
 
       <section className="px-6 py-12 max-w-6xl mx-auto">
