@@ -5,25 +5,35 @@ export default async function Home() {
   const products = await getProducts();
 
   return (
-    <main className="min-h-screen bg-white">
-      <header className="border-b border-gray-100 px-6 py-4">
-        <h1 className="text-2xl font-semibold text-gray-800">🌸 Hoa Len Handmade</h1>
-        <p className="text-sm text-gray-500">Hoa đan tay thủ công - Melbourne</p>
+    <main className="min-h-screen">
+      <header className="bg-gradient-to-r from-pink-400 via-rose-400 to-orange-300 px-6 py-16 text-center">
+        <h1 className="text-4xl sm:text-5xl font-bold text-white drop-shadow-sm">
+          🌸 Bloom & Stitch
+        </h1>
+        <p className="mt-3 text-white/90 text-lg">
+          Handmade crochet flowers, made with love in Melbourne
+        </p>
       </header>
 
-      <section className="px-6 py-10">
-        <h2 className="text-xl font-medium text-gray-700 mb-6">Sản phẩm</h2>
+      <section className="px-6 py-12 max-w-6xl mx-auto">
+        <h2 className="text-2xl font-bold text-gray-800 mb-8 text-center">
+          Our Collection
+        </h2>
+
         {products.length === 0 ? (
-          <p className="text-gray-400">Chưa có sản phẩm nào.</p>
+          <p className="text-center text-gray-400">No products yet.</p>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {products.map((product: any) => {
               const image = product.images?.edges?.[0]?.node;
               const price = product.priceRange?.minVariantPrice;
               return (
-                <div key={product.id} className="border border-gray-100 rounded-xl overflow-hidden hover:shadow-md transition-shadow">
+                <div
+                  key={product.id}
+                  className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                >
                   {image ? (
-                    <div className="relative h-56 bg-gray-50">
+                    <div className="relative h-64 bg-pink-50">
                       <Image
                         src={image.url}
                         alt={image.altText ?? product.title}
@@ -32,14 +42,21 @@ export default async function Home() {
                       />
                     </div>
                   ) : (
-                    <div className="h-56 bg-pink-50 flex items-center justify-center text-4xl">🌸</div>
+                    <div className="h-64 bg-gradient-to-br from-pink-100 to-orange-100 flex items-center justify-center text-6xl">
+                      🌷
+                    </div>
                   )}
-                  <div className="p-4">
-                    <h3 className="font-medium text-gray-800">{product.title}</h3>
+                  <div className="p-5">
+                    <h3 className="font-bold text-lg text-gray-800">{product.title}</h3>
                     <p className="text-sm text-gray-500 mt-1 line-clamp-2">{product.description}</p>
-                    <p className="mt-3 font-semibold text-pink-600">
-                      {price ? `${parseFloat(price.amount).toFixed(2)} ${price.currencyCode}` : ''}
-                    </p>
+                    <div className="mt-4 flex items-center justify-between">
+                      <span className="font-bold text-xl text-rose-500">
+                        {price ? `$${parseFloat(price.amount).toFixed(2)}` : ''}
+                      </span>
+                      <button className="bg-rose-400 hover:bg-rose-500 text-white text-sm font-semibold px-4 py-2 rounded-full transition-colors">
+                        View
+                      </button>
+                    </div>
                   </div>
                 </div>
               );
@@ -47,6 +64,10 @@ export default async function Home() {
           </div>
         )}
       </section>
+
+      <footer className="text-center py-8 text-gray-400 text-sm">
+        Made with 🧶 in Melbourne
+      </footer>
     </main>
   );
 }
