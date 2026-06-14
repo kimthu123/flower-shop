@@ -7,24 +7,63 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen">
-      <header className="bg-gradient-to-r from-pink-400 via-rose-400 to-orange-300 px-6 py-16 text-center">
-        <h1 className="text-4xl sm:text-5xl font-bold text-white drop-shadow-sm">
-          🌸 Bloom & Stitch
-        </h1>
-        <p className="mt-3 text-white/90 text-lg">
-          Handmade crochet flowers, made with love in Melbourne
-        </p>
-        <nav className="mt-4">
-          <Link href="/about" className="text-white/90 hover:text-white underline text-sm font-medium">
-            Our Story
-          </Link>
-        </nav>
-      </header>
+      {/* Hero */}
+      <section className="bg-gradient-to-br from-pink-400 via-rose-400 to-orange-300 px-6 py-20 text-center relative overflow-hidden">
+        <div className="relative z-10 max-w-2xl mx-auto">
+          <p className="text-white/80 font-semibold tracking-wide uppercase text-sm mb-3">
+            Handmade in Melbourne
+          </p>
+          <h1 className="text-5xl sm:text-6xl font-bold text-white drop-shadow-sm leading-tight">
+            🌸 Bloom & Stitch
+          </h1>
+          <p className="mt-4 text-white/90 text-lg max-w-md mx-auto">
+            Crochet flowers that never wilt — curated and handmade with love,
+            piece by piece.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <Link
+              href="#shop"
+              className="bg-white text-rose-500 font-bold px-8 py-3 rounded-full hover:bg-pink-50 transition-colors shadow-sm"
+            >
+              Shop Collection
+            </Link>
+            <Link
+              href="/about"
+              className="border-2 border-white text-white font-bold px-8 py-3 rounded-full hover:bg-white/10 transition-colors"
+            >
+              Our Story
+            </Link>
+          </div>
+        </div>
+      </section>
 
-      <section className="px-6 py-12 max-w-6xl mx-auto">
-        <h2 className="text-2xl font-bold text-gray-800 mb-8 text-center">
-          Our Collection
-        </h2>
+      {/* Trust bar */}
+      <section className="px-6 py-10 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+          <div className="bg-white rounded-2xl p-6 shadow-sm">
+            <div className="text-3xl mb-2">🧶</div>
+            <h3 className="font-bold text-gray-800">Handmade</h3>
+            <p className="text-sm text-gray-500 mt-1">Crafted by skilled artisans, stitch by stitch</p>
+          </div>
+          <div className="bg-white rounded-2xl p-6 shadow-sm">
+            <div className="text-3xl mb-2">🌿</div>
+            <h3 className="font-bold text-gray-800">Never Wilts</h3>
+            <p className="text-sm text-gray-500 mt-1">A lasting alternative to fresh flowers</p>
+          </div>
+          <div className="bg-white rounded-2xl p-6 shadow-sm">
+            <div className="text-3xl mb-2">📍</div>
+            <h3 className="font-bold text-gray-800">Pickup Available</h3>
+            <p className="text-sm text-gray-500 mt-1">Order online, collect in-store in Melbourne</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Product grid */}
+      <section id="shop" className="px-6 py-12 max-w-6xl mx-auto">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl font-bold text-gray-800">Our Collection</h2>
+          <p className="text-gray-500 mt-2">Each piece is one of a kind</p>
+        </div>
 
         {products.length === 0 ? (
           <p className="text-center text-gray-400">No products yet.</p>
