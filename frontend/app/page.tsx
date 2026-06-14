@@ -14,7 +14,7 @@ export default async function Home() {
             Handmade in Melbourne
           </p>
           <h1 className="text-5xl sm:text-6xl font-bold text-white drop-shadow-sm leading-tight">
-            🌸 Bloom & Stitch
+            🌸 Chu's Flower
           </h1>
           <p className="mt-4 text-white/90 text-lg max-w-md mx-auto">
             Crochet flowers that never wilt — curated and handmade with love,

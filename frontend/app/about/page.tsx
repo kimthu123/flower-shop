@@ -15,7 +15,7 @@ export default function AboutPage() {
       <section className="px-6 py-12 max-w-3xl mx-auto">
         <div className="bg-white rounded-3xl shadow-sm p-8 sm:p-12 space-y-6 text-gray-600 leading-relaxed">
           <p className="text-lg">
-            Every flower at <span className="font-bold text-rose-500">Bloom & Stitch</span> is
+            Every flower at <span className="font-bold text-rose-500">Chu's Flower</span> is
             curated and handmade by skilled artisans, with care put into every stitch and petal.
           </p>
 
