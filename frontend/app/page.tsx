@@ -1,5 +1,6 @@
 import { getProducts } from '@/lib/shopify';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default async function Home() {
   const products = await getProducts();
@@ -53,9 +54,12 @@ export default async function Home() {
                       <span className="font-bold text-xl text-rose-500">
                         {price ? `$${parseFloat(price.amount).toFixed(2)}` : ''}
                       </span>
-                      <button className="bg-rose-400 hover:bg-rose-500 text-white text-sm font-semibold px-4 py-2 rounded-full transition-colors">
+                      <Link
+                        href={`/products/${product.handle}`}
+                        className="bg-rose-400 hover:bg-rose-500 text-white text-sm font-semibold px-4 py-2 rounded-full transition-colors"
+                      >
                         View
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>

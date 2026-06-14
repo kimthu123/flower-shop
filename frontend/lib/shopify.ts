@@ -39,3 +39,63 @@ export async function getProducts() {
   const { data } = await shopifyClient.request(query);
   return data?.products?.edges?.map((edge: any) => edge.node) ?? [];
 }
+
+export async function getProductByHandle(handle: string) {
+  const query = `
+    query getProduct($handle: String!) {
+      product(handle: $handle) {
+        id
+        title
+        handle
+        description
+        descriptionHtml
+        images(first: 5) {
+          edges {
+            node {
+              url
+              altText
+            }
+          }
+        }
+        variants(first: 10) {
+          edges {
+            node {
+              id
+              title
+              availableForSale
+              price {
+                amount
+                currencyCode
+              }
+              selectedOptions {
+                name
+                value
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const { data } = await shopifyClient.request(query, {
+    variables: { handle },
+  });
+  return data?.product ?? null;
+}
+
+export async function getAllProductHandles() {
+  const query = `
+    query getHandles {
+      products(first: 50) {
+        edges {
+          node {
+            handle
+          }
+        }
+      }
+    }
+  `;
+  const { data } = await shopifyClient.request(query);
+  return data?.products?.edges?.map((edge: any) => edge.node.handle) ?? [];
+}
