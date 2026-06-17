@@ -2,6 +2,7 @@ import { getProductByHandle, getAllProductHandles } from '@/lib/shopify';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import AddToCartButton from './AddToCartButton';
 
 export async function generateStaticParams() {
   const handles = await getAllProductHandles();
@@ -23,7 +24,9 @@ export default async function ProductPage({
   const images = product.images?.edges?.map((e: any) => e.node) ?? [];
   const variants = product.variants?.edges?.map((e: any) => e.node) ?? [];
   const mainImage = images[0];
-  const price = variants[0]?.price;
+  const firstVariant = variants[0];
+  const price = firstVariant?.price;
+  const hasDescription = product.descriptionHtml && product.descriptionHtml.trim().length > 0;
 
   return (
     <main className="min-h-screen">
@@ -45,7 +48,7 @@ export default async function ProductPage({
               </div>
             ) : (
               <div className="h-96 rounded-3xl bg-gradient-to-br from-pink-100 to-orange-100 flex items-center justify-center text-7xl">
-                🌷
+                📦
               </div>
             )}
 
@@ -66,14 +69,21 @@ export default async function ProductPage({
               {price ? `$${parseFloat(price.amount).toFixed(2)} ${price.currencyCode}` : ''}
             </p>
 
-            <div
-              className="mt-6 text-gray-600 leading-relaxed"
-              dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
-            />
+            <div className="mt-6 border-t border-pink-100 pt-6">
+              <h2 className="font-bold text-gray-800 mb-2">Description</h2>
+              {hasDescription ? (
+                <div
+                  className="text-gray-600 leading-relaxed"
+                  dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
+                />
+              ) : (
+                <p className="text-gray-400 italic">No description available yet.</p>
+              )}
+            </div>
 
             {variants.length > 1 && (
-              <div className="mt-6">
-                <p className="font-semibold text-gray-700 mb-2">Options</p>
+              <div className="mt-6 border-t border-pink-100 pt-6">
+                <p className="font-bold text-gray-800 mb-2">Options</p>
                 <div className="flex flex-wrap gap-2">
                   {variants.map((v: any) => (
                     <span
@@ -87,9 +97,7 @@ export default async function ProductPage({
               </div>
             )}
 
-            <button className="mt-8 w-full bg-rose-400 hover:bg-rose-500 text-white font-bold py-4 rounded-full text-lg transition-colors">
-              Add to Cart
-            </button>
+            {firstVariant && <AddToCartButton variantId={firstVariant.id} />}
           </div>
         </div>
       </div>
