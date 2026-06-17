@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Chu's Flower",
-  description: "Handmade crochet flowers in Melbourne",
+  title: "The Collective House",
+  description: "Quality wholesale and retail goods in Melbourne",
 };
 
 export default function RootLayout({

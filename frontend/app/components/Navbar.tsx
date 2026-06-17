@@ -7,8 +7,8 @@ export default function Navbar() {
     <nav className="bg-white border-b border-gray-100 px-6 py-4 sticky top-0 z-50">
       <div className="max-w-6xl mx-auto flex items-center justify-between">
         <Link href="/" className="text-2xl font-bold tracking-wide">
-          <span className="text-rose-500">CHU'S</span>
-          <span className="text-gray-800"> &amp; STITCH</span>
+          <span className="text-rose-500">THE COLLECTIVE</span>
+          <span className="text-gray-800"> HOUSE</span>
         </Link>
 
         <div className="hidden md:flex items-center gap-8 text-sm font-medium uppercase tracking-wide text-gray-600">
