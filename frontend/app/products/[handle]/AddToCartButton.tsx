@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useCart } from '@/app/context/CartContext';
 
 export default function AddToCartButton({ variantId }: { variantId: string }) {
-  const { addItem, loading } = useCart();
+  const { addItem, loading, error } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
 
@@ -43,6 +43,8 @@ export default function AddToCartButton({ variantId }: { variantId: string }) {
       >
         {loading ? 'Adding...' : added ? 'Added! ✓' : 'Add to Cart'}
       </button>
+
+      {error && <p className="mt-3 text-rose-500 text-sm text-center">{error}</p>}
     </div>
   );
 }

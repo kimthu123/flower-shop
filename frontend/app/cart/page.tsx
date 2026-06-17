@@ -5,16 +5,25 @@ import Link from 'next/link';
 import { useCart } from '../context/CartContext';
 
 export default function CartPage() {
-  const { cart, loading, updateItem, removeItem } = useCart();
+  const { cart, loading, isLoaded, error, updateItem, removeItem } = useCart();
   const lines = cart?.lines?.edges?.map((e: any) => e.node) ?? [];
   const total = cart?.cost?.totalAmount?.amount;
   const currency = cart?.cost?.totalAmount?.currencyCode;
+
+  if (!isLoaded) {
+    return (
+      <main className="min-h-screen px-6 py-16 text-center">
+        <p className="text-gray-400">Loading your cart...</p>
+      </main>
+    );
+  }
 
   if (!cart || lines.length === 0) {
     return (
       <main className="min-h-screen px-6 py-16 text-center">
         <h1 className="text-3xl font-bold text-gray-800">Your Cart</h1>
         <p className="mt-4 text-gray-500">Your cart is empty.</p>
+        {error && <p className="mt-2 text-rose-500 text-sm">{error}</p>}
         <Link href="/" className="mt-8 inline-block bg-rose-400 hover:bg-rose-500 text-white font-bold px-8 py-3 rounded-full transition-colors">
           Browse Products
         </Link>
@@ -25,6 +34,12 @@ export default function CartPage() {
   return (
     <main className="min-h-screen px-6 py-12 max-w-3xl mx-auto">
       <h1 className="text-3xl font-bold text-gray-800 mb-8">Your Cart</h1>
+
+      {error && (
+        <div className="mb-6 bg-rose-50 border border-rose-200 text-rose-600 text-sm px-4 py-3 rounded-xl">
+          {error}
+        </div>
+      )}
 
       <div className="space-y-4">
         {lines.map((line: any) => {
