@@ -54,3 +54,11 @@ module "cloudfront" {
   domain_name                 = var.domain_name
   certificate_arn             = module.acm.certificate_arn
 }
+
+module "lambda" {
+  source        = "./modules/lambda"
+  project_name  = var.project_name
+  github_token  = var.github_token
+  github_owner  = var.github_owner
+  github_repo   = var.github_repo
+}
