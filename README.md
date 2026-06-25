@@ -2,7 +2,7 @@
 
 A production e-commerce website built for a Melbourne-based wholesale and retail store, powered by a modern cloud-native stack on AWS.
 
-🌐 **Live site:** https://d13nm4q4orobh9.cloudfront.net
+🌐 **Live site:** https://thecollectivehouse.com.au
 
 ---
 
