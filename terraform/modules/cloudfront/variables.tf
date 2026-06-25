@@ -17,3 +17,13 @@ variable "bucket_arn" {
   description = "S3 bucket ARN"
   type        = string
 }
+
+variable "domain_name" {
+  description = "Custom domain name"
+  type        = string
+}
+
+variable "certificate_arn" {
+  description = "ACM certificate ARN"
+  type        = string
+}
