@@ -1,3 +1,11 @@
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+    }
+  }
+}
+
 data "archive_file" "webhook" {
   type        = "zip"
   source_dir  = "${path.root}/../lambda/shopify-webhook"
@@ -44,4 +52,12 @@ resource "aws_lambda_function" "webhook" {
 resource "aws_lambda_function_url" "webhook" {
   function_name      = aws_lambda_function.webhook.function_name
   authorization_type = "NONE"
+}
+
+resource "aws_lambda_permission" "public_access" {
+  statement_id           = "FunctionURLAllowPublicAccess"
+  action                 = "lambda:InvokeFunctionUrl"
+  function_name          = aws_lambda_function.webhook.function_name
+  principal              = "*"
+  function_url_auth_type = "NONE"
 }
