@@ -7,6 +7,8 @@ A production e-commerce website built for a Melbourne-based wholesale and retail
 ---
 
 ## Architecture Overview
+
+![AWS Architecture](docs/architecture.png)
 User → CloudFront (CDN + HTTPS)
 
 → S3 Bucket (Next.js static export)
